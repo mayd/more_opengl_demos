@@ -48,16 +48,26 @@ typedef struct _Material
   GLfloat shininess;
 } Material;
 
-typedef enum 
-{
-  NONE = 0, 
-  KING,
-  QUEEN,
-  BISHOP,
-  KNIGHT,
-  ROOK,
-  PAWN
-} Piece;
+//typedef enum 
+//{
+//  NONE = 0, 
+//  KING,
+//  QUEEN,
+//  BISHOP,
+//  KNIGHT,
+//  ROOK,
+//  PAWN
+//} Piece;
+
+#define NONE 0 
+#define KING 1
+#define QUEEN 2
+#define BISHOP 3
+#define KNIGHT 4
+#define ROOK 5
+#define PAWN 6
+
+typedef int Piece;
 
 /* structures for chess pieces */
 typedef struct _OGLpiece
@@ -1130,7 +1140,7 @@ void idle(void)
 		{
 		  falling = GL_FALSE;  /* done falling */
 		  moving = GL_FALSE;   /* we are done moving as well */
-		  board[Move_Mouse_Y][Move_Mouse_X] = moving_piece;
+		  if (Move_Mouse_Y >= 0 && Move_Mouse_X >=0) board[Move_Mouse_Y][Move_Mouse_X] = moving_piece;
 		}
 	    } 
 	  else  /* must be moving over to the new tile */

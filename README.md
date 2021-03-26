@@ -1,7 +1,7 @@
 ## More OpenGL demos
 
 The code in this repository is taken from [OpenGL More Code Samples](https://www.opengl.org/archives/resources/code/samples/more_samples/)
-and modified to buid and run on Windows 10 with MSYS2/MINGW.
+and modified to build and run on Windows 10 with MSYS2/MINGW.
 
 # Work in progress
 
@@ -28,4 +28,6 @@ Downloaded and extracted the following Zip archives:
 * [smooth.zip](https://www.opengl.org/archives/resources/code/samples/more_samples/smooth.zip) Wavefront .OBJ file format model reader/writer manipulator. Use the left mouse button to move, middle mouse button to rotate and right mouse button for menu.
 * [texenv.zip](https://www.opengl.org/archives/resources/code/samples/more_samples/texenv.zip) Demonstrates texture environment modes and internal image formats.
 * [vcull.zip](https://www.opengl.org/archives/resources/code/samples/more_samples/vcull.zip) Simple program that demonstrates the vertex array extension.
+
+Made minimal changes to `bounce` and `chess` to compile and run under MSYS2/MINGW.
 

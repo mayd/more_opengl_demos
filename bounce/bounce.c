@@ -854,10 +854,8 @@ update_grid(float value)
     glutPostRedisplay();
 }
 
-void
-main(argc, argv)
-    int argc;
-    char **argv;
+int
+main(int argc, char **argv)
 {
     glutInitWindowSize(512, 512);
     glutInitWindowPosition(64, 64);
