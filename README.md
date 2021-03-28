@@ -31,3 +31,7 @@ Downloaded and extracted the following Zip archives:
 
 Made minimal changes to `bounce` and `chess` to compile and run under MSYS2/MINGW.
 
+27 March 2021
+
+Made minimal changes to enable *all* demos to compile and run on Windows 10 under MSYS2/MINGW.
+
