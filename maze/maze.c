@@ -48,7 +48,7 @@ int enabletexture =0;
 
 // unfortunately due to the way the polygon walls are generated there
 // are restrictions on what the wall/maze data can look like.  See below.
-char *mazedata[MAZE_HEIGHT] = {
+char mazedata[][MAZE_HEIGHT] = {
         "****************",
         "*       *      *",
         "* * *** * *    *",

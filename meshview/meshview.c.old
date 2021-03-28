@@ -117,19 +117,19 @@ meshread(char* filename)
   fscanf(file, "%d %d", &mesh_columns, &mesh_rows);
 
   /* allocate some space for the mesh */
-  mesh_data         = (GLfloat **)malloc(sizeof(GLfloat *)*mesh_columns);
-  mesh_vertices     = (GLfloat ***)malloc(sizeof(GLfloat **)*mesh_columns);
-  mesh_normals      = (GLfloat ***)malloc(sizeof(GLfloat **)*mesh_columns);
-  mesh_facetnormals = (GLfloat ***)malloc(sizeof(GLfloat **)*mesh_columns);
+  mesh_data         = (GLfloat**)malloc(sizeof(GLfloat)*mesh_columns);
+  mesh_vertices     = (GLfloat***)malloc(sizeof(GLfloat)*mesh_columns);
+  mesh_normals      = (GLfloat***)malloc(sizeof(GLfloat)*mesh_columns);
+  mesh_facetnormals = (GLfloat***)malloc(sizeof(GLfloat)*mesh_columns);
   for (i = 0; i < mesh_columns; i++) {
-    mesh_data[i]         = (GLfloat *)malloc(sizeof(GLfloat)*mesh_rows);
-    mesh_vertices[i]     = (GLfloat **)malloc(sizeof(GLfloat *)*mesh_rows);
-    mesh_normals[i]      = (GLfloat **)malloc(sizeof(GLfloat *)*mesh_rows);
-    mesh_facetnormals[i] = (GLfloat **)malloc(sizeof(GLfloat *)*mesh_rows);
+    mesh_data[i]         = (GLfloat*)malloc(sizeof(GLfloat)*mesh_rows);
+    mesh_vertices[i]     = (GLfloat**)malloc(sizeof(GLfloat)*mesh_rows);
+    mesh_normals[i]      = (GLfloat**)malloc(sizeof(GLfloat)*mesh_rows);
+    mesh_facetnormals[i] = (GLfloat**)malloc(sizeof(GLfloat)*mesh_rows);
     for (j = 0; j < mesh_rows; j++) {
-      mesh_vertices[i][j]     = (GLfloat *)malloc(sizeof(GLfloat)*3);
-      mesh_normals[i][j]      = (GLfloat *)malloc(sizeof(GLfloat)*3);
-      mesh_facetnormals[i][j] = (GLfloat *)malloc(sizeof(GLfloat)*3);
+      mesh_vertices[i][j]     = (GLfloat*)malloc(sizeof(GLfloat)*3);
+      mesh_normals[i][j]      = (GLfloat*)malloc(sizeof(GLfloat)*3);
+      mesh_facetnormals[i][j] = (GLfloat*)malloc(sizeof(GLfloat)*3);
     }
   }
 
@@ -263,7 +263,7 @@ meshread(char* filename)
     mesh_normals[mesh_columns-1][j][2] = mesh_normals[mesh_columns-2][j][2];
   }
 
-  printf("%d x %d x %.0f mesh\n", mesh_columns, mesh_rows, mesh_maximum); fflush(stdout);
+  printf("%d x %d x %.0f mesh\n", mesh_columns, mesh_rows, mesh_maximum);
 
   /* free the mesh data & facet normals */
   for (i = 0; i < mesh_columns; i++) {
@@ -482,7 +482,6 @@ keyboard(char key, int x, int y)
     printf("down arrow   -  Decrease row step\n");
     printf("up arrow     -  Increase row step\n");
     printf("escape or q  -  Quit\n\n");
-    fflush(stdout);
     break;
 
   case 'f':

@@ -36,16 +36,43 @@
  */
 #include "Drip.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <GL/glut.h>
 #ifdef WIN32
-#include <sys/timeb.h>
+#include <windows.h>
+#include <winsock.h>
+#define trunc(x) ((float)((int)(x)))
+
+// Implementation of gettimeofday() taken from reply by user Michaelangel007 to post on Stackoverflow
+// "Equivalent of gettimeday() for Windows" <https://stackoverflow.com/questions/10905892/equivalent-of-gettimeday-for-windows>
+
+int gettimeofday(struct timeval * tp, struct timezone * tzp)
+{
+    // Note: some broken versions only have 8 trailing zero's, the correct epoch has 9 trailing zero's
+    // This magic number is the number of 100 nanosecond intervals since January 1, 1601 (UTC)
+    // until 00:00:00 January 1, 1970 
+    static const uint64_t EPOCH = ((uint64_t) 116444736000000000ULL);
+
+    SYSTEMTIME  system_time;
+    FILETIME    file_time;
+    uint64_t    time;
+
+    GetSystemTime( &system_time );
+    SystemTimeToFileTime( &system_time, &file_time );
+    time =  ((uint64_t)file_time.dwLowDateTime )      ;
+    time += ((uint64_t)file_time.dwHighDateTime) << 32;
+
+    tp->tv_sec  = (long) ((time - EPOCH) / 10000000L);
+    tp->tv_usec = (long) (system_time.wMilliseconds * 1000);
+    return 0;
+}
 #else
 #include <sys/time.h>
 #endif
-#include <GL/glut.h>
 
 
 float win_width, win_height;
@@ -79,24 +106,6 @@ const float max_ring_radius = 250.0;	/* How big to let them get before
 const float default_drips_second = 3.0;	/* How many drips should be randomly
 					 * created for a full-size screen */
 
-#ifdef WIN32
-
-#define trunc(x) ((float)((int)(x)))
-
-int
-gettimeofday(struct timeval* tp)
-{
-    struct timeb tb;
-
-    ftime(&tb);
-    tp->tv_sec = tb.time;
-    tp->tv_usec = tb.millitm * 1000;
-
-    /* 0 indicates that the call succeeded. */
-    return 0;
-}
-#endif
-
 
 float probability(float win_width, float win_height)
 {
@@ -128,7 +137,7 @@ float draw()
     float rel_size;
     int i;
 
-    gettimeofday(&new_time);
+    gettimeofday(&new_time, NULL);
     if (old_time.tv_sec == 0 && old_time.tv_usec == 0) {
 	old_time.tv_sec = new_time.tv_sec;
 	old_time.tv_usec = new_time.tv_usec;
@@ -265,7 +274,7 @@ idle()
     }
 }
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     int fullscreen = 0;
     int i;

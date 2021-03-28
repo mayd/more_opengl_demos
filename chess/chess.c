@@ -147,8 +147,8 @@ Win_Width       = DFLT_WIN_WIDTH,  /* current width of window */
   Wood            = 0;               /* display list for wood texture */
 
 GLfloat
-X_Rot   = 40.0,    /* rotation about x axis */
-  Spin    = 20.0,     /* rotation about y axis */
+  X_Rot   = 40.0,    /* rotation about x axis */
+  Spin    = 20.0,    /* rotation about y axis */
   Z_Trans = -20.0;   /* z translation of whole scene */
 
 GLboolean
@@ -656,18 +656,18 @@ void object()
       /* read the object in */
       object = glmReadOBJ(Piece_Files[i - 1]);
       if(!object) /* bail if no object - error message already sent */
-	exit(1);
+	      exit(1);
 	
       /* scale the first object (the king and
        * also the biggest) to between -1.0 and 1.0
        * and move it to (0, 0, 0), and keep the
        * scalefactor so that we can scale all the
-       * other peices equally.
+       * other pieces equally.
        */
       if(!scalefactor) {
-	scalefactor = glmUnitize(object);
+	      scalefactor = glmUnitize(object);
       } else {
-	glmScale(object, scalefactor);
+	      glmScale(object, scalefactor);
       }
 
       glmScale(object, 1.2);
@@ -677,13 +677,13 @@ void object()
        * object doesn't have them.
        */
       if(object->num_normals == 0)
-	tdGenSmoothNormals(object);
+	      tdGenSmoothNormals(object);
 	
       /* generate texture vertices if
        * this object doesn't have them
        */
       if(object->num_texvertices == 0)
-	tdGenSpheremapTexvertices(object);
+      	tdGenSpheremapTexvertices(object);
 #endif
 
       /* build a display list */
@@ -912,7 +912,7 @@ void idle(void)
   static float dx, dy, dh, start_x, start_y, end_x, end_y;
   static GLfloat light_position0[] = {  1.0, 1.0, 1.0, 0.0 };
  
-#if 0
+//#if 0
   if(!Frozen || Step)
     {
       Spin += 1.0;
@@ -921,7 +921,7 @@ void idle(void)
 
       Step = GL_FALSE;
     }
-#endif
+//#endif
 
   if(Start_Moving && Old_Mouse_Y != -1 && Old_Mouse_X != -1)
     {
@@ -974,11 +974,11 @@ void idle(void)
 	
     tbMatrix();
 
-#if 0
+//#if 0
     /* rotation around the X axis (tilt toward plane of screen) */
     glRotatef(X_Rot, 1.0, 0.0, 0.0);	
     glRotatef(Spin, 0.0, 1.0, 0.0);
-#endif
+//#endif
 
     /* draw the actual chessboard and its
      * accompanying border

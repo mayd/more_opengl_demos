@@ -235,6 +235,7 @@ keyboard(char key, int x, int y)
     printf("+/-          -  Increase/decrease smoothing angle\n");
     printf("W            -  Write model to file (out.obj)\n");
     printf("q/escape     -  Quit\n\n");
+    fflush(stdout);
     break;
 
   case 't':
@@ -249,7 +250,7 @@ keyboard(char key, int x, int y)
     material_mode++;
     if (material_mode > 2)
       material_mode = 0;
-    printf("material_mode = %d\n", material_mode);
+    printf("material_mode = %d\n", material_mode); fflush(stdout);
     lists();
     break;
 
@@ -306,7 +307,7 @@ keyboard(char key, int x, int y)
 
   case 'O':
     weld_distance += 0.01;
-    printf("Weld distance: %.2f\n", weld_distance);
+    printf("Weld distance: %.2f\n", weld_distance); fflush(stdout);
     glmWeld(model, weld_distance);
     glmFacetNormals(model);
     glmVertexNormals(model, smoothing_angle);
@@ -315,14 +316,14 @@ keyboard(char key, int x, int y)
 
   case '-':
     smoothing_angle -= 1.0;
-    printf("Smoothing angle: %.1f\n", smoothing_angle);
+    printf("Smoothing angle: %.1f\n", smoothing_angle); fflush(stdout);
     glmVertexNormals(model, smoothing_angle);
     lists();
     break;
     
   case '+':
     smoothing_angle += 1.0;
-    printf("Smoothing angle: %.1f\n", smoothing_angle);
+    printf("Smoothing angle: %.1f\n", smoothing_angle); fflush(stdout);
     glmVertexNormals(model, smoothing_angle);
     lists();
     break;

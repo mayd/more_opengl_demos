@@ -551,9 +551,9 @@ doRedraw(void)
     if (drawOutlines) {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     }
-    if (useVertexCull) {
-        glEnable(GL_CULL_VERTEX_SGI);
-    }
+    //if (useVertexCull) {
+    //  glEnable(GL_CULL_VERTEX_SGI);
+    //}
     if (useFaceCull) {
         glEnable(GL_CULL_FACE);
     }
@@ -611,7 +611,7 @@ doRedraw(void)
 
     glDisable(GL_TEXTURE_2D);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    glDisable(GL_CULL_VERTEX_SGI);
+    //glDisable(GL_CULL_VERTEX_SGI);
     glDisable(GL_CULL_FACE);
     glDisable(GL_LIGHTING);
     glDisable(GL_DEPTH_TEST);

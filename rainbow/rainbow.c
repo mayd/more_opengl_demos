@@ -306,6 +306,7 @@ keyboard(char key, int x, int y)
     printf("a            -  Toggle auto-rotation\n");
     printf("backspace    -  Reset\n");
     printf("escape or q  -  Quit\n\n");
+    fflush(stdout);
     break;
 
   case 'a':

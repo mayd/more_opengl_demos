@@ -713,8 +713,8 @@ char *name;
     obj->data = (int *) (((int)(obj->data)) + 0xfff);
     obj->data = (int *) (((int)(obj->data)) & 0xfffff000);
 
-    for (i = 0, ip = obj->data;  i < nlongs/4;  i++, ip += 4)
-	fread(ip, 3 * sizeof(int), 1, inf);
+    for (i = 0, ip = obj->data; i < nlongs/4; i++, ip += 4)
+	    fread(ip, 3 * sizeof(int), 1, inf);
     fclose(inf);
     return obj;
 }
@@ -849,7 +849,7 @@ update_grid(float value)
 {
     wallgrid = WALLGRIDMAX*value;
     if (wallgrid < 1)
-	wallgrid = 1;
+	    wallgrid = 1;
     initobjects();
     glutPostRedisplay();
 }
